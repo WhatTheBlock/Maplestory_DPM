@@ -453,9 +453,9 @@ DemonSlayerDealCycle <- data.frame(DemonSlayerDealCycle)
 DemonSlayerCycle <- function(DealCycle, ATKFinal, BuffFinal, SummonedFinal, Spec, SkipStructure, 
                              Period=240, CycleTime=720, AwakeningOffSlash=T) {
   BuffSummonedPrior <- c("BlueBlood", "DemonBooster", "UsefulSharpEyes", "UsefulCombatOrders", "UsefulAdvancedBless", "DemonicFortitude", 
-                         "CallMastema", "InfinityForce", "VampiricTouch", "Metamorphosis", "AuraWeaponBuff", "BlessofIsekaiGoddess", "OrthrosBuff", "SoulContractLink", "Restraint4")
+                         "CallMastema", "InfinityForce", "Metamorphosis", "AuraWeaponBuff", "BlessofIsekaiGoddess", "OrthrosBuff", "SoulContractLink", "Restraint4")
   Times240 <- c(0, 0, 0, 0, 0, 0, 
-                8/5, 2, 0, 1, 4/3, 2, 2, 2, 1)
+                8/5, 2, 1, 4/3, 2, 2, 2, 1)
   if(nrow(BuffFinal[rownames(BuffFinal)=="UsefulAdvancedBless", ]) == 0) {
     Times240 <- Times240[BuffSummonedPrior!="UsefulAdvancedBless"]
     BuffSummonedPrior <- BuffSummonedPrior[BuffSummonedPrior!="UsefulAdvancedBless"]
