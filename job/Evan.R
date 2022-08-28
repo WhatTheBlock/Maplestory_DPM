@@ -227,7 +227,7 @@ DiveReturnBuff <- rbind(data.frame(option, value), info)
 
 option <- factor(c("BDR"), levels=BSkill)
 value <- c(20 + 2 * EvanBase$SkillLv)
-info <- c(Cooldown(40, T, EvanBase$UnionChrs$CoolReduceP, EvanBase$CoolReduce), Cooldown(40, T, EvanBase$UnionChrs$CoolReduceP, EvanBase$CoolReduce) + 1, Delay(1160, 2), F, F, F, F)
+info <- c(9999, 0, 0, F, F, F, F)
 info <- data.frame(BInfo, info)
 colnames(info) <- c("option", "value")
 DarkFogBuff <- rbind(data.frame(option, value), info)
