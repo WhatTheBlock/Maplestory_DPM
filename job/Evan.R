@@ -1,3 +1,6 @@
+library(parallel)
+options(scipen=999)
+
 ## Option Setting
 EvanWeaponType <- "Staff"
 EvanDealCycleType <- "DoE-DB-BoW"  ## "DoE-DB-BoW", "SoT-DoE-DB"
@@ -474,21 +477,21 @@ DiveofEarth <- rbind(data.frame(option, value), info) ## 0ms, 900ms, 1380ms, 186
 
 option <- factor(levels=ASkill)
 value <- c()
-info <- c(750 + 30 * GetCoreLv(EvanCore, "ElementalBlast"), 6, 780, NA, 60, T, F, F)
+info <- c(650 + 26 * GetCoreLv(EvanCore, "ElementalBlast"), 8, 780, NA, 60, T, F, F)
 info <- data.frame(AInfo, info)
 colnames(info) <- c("option", "value")
 ElementalBlast <- rbind(data.frame(option, value), info) ## ATKs : 0ms, 660ms, 1230ms, 2070ms
 
 option <- factor(levels=ASkill)
 value <- c()
-info <- c(450 + 18 * GetCoreLv(EvanCore, "DragonBreak"), 7, 0, 360, 20, T, F, F)
+info <- c(475 + 19 * GetCoreLv(EvanCore, "DragonBreak"), 7, 0, 360, 20, T, F, F)
 info <- data.frame(AInfo, info)
 colnames(info) <- c("option", "value")
 DragonBreak <- rbind(data.frame(option, value), info)
 
 option <- factor(levels=ASkill)
 value <- c()
-info <- c(550 + 20 * GetCoreLv(EvanCore, "DragonBreak"), 7, 0, 240, NA, NA, NA, F)
+info <- c(600 + 24 * GetCoreLv(EvanCore, "DragonBreak"), 7, 0, 240, NA, NA, NA, F)
 info <- data.frame(AInfo, info)
 colnames(info) <- c("option", "value")
 ImperialBreath <- rbind(data.frame(option, value), info)
@@ -502,7 +505,7 @@ BreakReturn <- rbind(data.frame(option, value), info)
 
 option <- factor(c("IGR"), levels=ASkill)
 value <- c(100)
-info <- c(580 + 16 * GetCoreLv(EvanCore, "JodiacRay"), 6, 780, 180, 180, T, F, F)
+info <- c(475 + 19 * GetCoreLv(EvanCore, "JodiacRay"), 8, 780, 180, 180, T, F, F)
 info <- data.frame(AInfo, info)
 colnames(info) <- c("option", "value")
 JodiacRay <- rbind(data.frame(option, value), info)
