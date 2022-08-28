@@ -505,7 +505,7 @@ BreakReturn <- rbind(data.frame(option, value), info)
 
 option <- factor(c("IGR"), levels=ASkill)
 value <- c(100)
-info <- c(475 + 19 * GetCoreLv(EvanCore, "JodiacRay"), 8, 780, 180, 180, T, F, F)
+info <- c(475 + 19 * GetCoreLv(EvanCore, "JodiacRay"), 8, 780, 174, 180, T, F, F)
 info <- data.frame(AInfo, info)
 colnames(info) <- c("option", "value")
 JodiacRay <- rbind(data.frame(option, value), info)
