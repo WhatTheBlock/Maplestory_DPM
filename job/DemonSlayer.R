@@ -103,14 +103,15 @@ DFMaxForce <- rbind(data.frame(option, value), info)
 
 option <- factor("ATKSpeed", levels=BSkill)
 value <- c(2)
-info <- c(180, NA, 0, T, NA, NA, T)
+info <- c(999, NA, 0, T, NA, NA, T)
 info <- data.frame(BInfo, info)
 colnames(info) <- c("option", "value")
 DemonBooster <- rbind(data.frame(option, value), info)
 
+# useless shit
 option <- factor(levels=BSkill)
 value <- c()
-info <- c(180 + 12 * DemonSlayerBase$SkillLv, NA, 810, T, NA, NA, T)
+info <- c(999 + 12 * DemonSlayerBase$SkillLv, NA, 0, T, NA, NA, T)
 info <- data.frame(BInfo, info)
 colnames(info) <- c("option", "value")
 VampiricTouch <- rbind(data.frame(option, value), info)
@@ -336,7 +337,7 @@ OrthrosGeryon <- rbind(data.frame(option, value), info)
 
 option <- factor(c("CRR", "IGR", "FDR"), levels=ASkill)
 value <- c(50, 30, 90)
-info <- c(0, 0, 240, NA, 120, T, F, F) ## StartATK : 240ms, 12 Hits(Check Needed)
+info <- c(0, 0, 240, NA, 120, T, F, F) ## StartATK : 240ms, 11 Hits(Check Needed)
 info <- data.frame(AInfo, info)
 colnames(info) <- c("option", "value")
 DemonBanePre <- rbind(data.frame(option, value), info)
@@ -350,14 +351,14 @@ DemonBaneTick <- rbind(data.frame(option, value), info)
 
 option <- factor(c("CRR", "IGR", "FDR"), levels=ASkill)
 value <- c(50, 30, 90)
-info <- c(250 + 11 * GetCoreLv(DemonSlayerCore, "DemonBane"), 6, 3000 - 240 * 12, NA, 120, T, F, F)
+info <- c(250 + 11 * GetCoreLv(DemonSlayerCore, "DemonBane"), 6, 3000 - 240 * 11, NA, 120, T, F, F)
 info <- data.frame(AInfo, info)
 colnames(info) <- c("option", "value")
 DemonBaneEnd <- rbind(data.frame(option, value), info)
 
 option <- factor(c("CRR", "IGR", "FDR"), levels=ASkill)
 value <- c(50, 30, 90)
-info <- c(0, 0, 600, NA, 120, T, F, F) ## StartATK : 600ms, 21 Hits(Check Needed)
+info <- c(0, 0, 600, NA, 120, T, F, F) ## StartATK : 600ms, 13 Hits(Check Needed)
 info <- data.frame(AInfo, info)
 colnames(info) <- c("option", "value")
 DemonBaneLastPre <- rbind(data.frame(option, value), info)
@@ -520,7 +521,7 @@ DemonSlayerCycle <- function(DealCycle, ATKFinal, BuffFinal, SummonedFinal, Spec
   DFBBLogic <- function(DealCycle, DFAbsorb, DFCost) {
     if(sum(DealCycle$Skills[nrow(DealCycle)]==DFAbsorb$Skills)==1) {
       Absorb <- subset(DFAbsorb, DFAbsorb$Skills==DealCycle$Skills[nrow(DealCycle)])$Absorb
-      DealCycle$DF[nrow(DealCycle)] <- min(170, DealCycle$DF[nrow(DealCycle)-1] + Absorb)
+      DealCycle$DF[nrow(DealCycle)] <- min(230, DealCycle$DF[nrow(DealCycle)-1] + Absorb)
     } else if(sum(DealCycle$Skills[nrow(DealCycle)]==DFCost$Skills)==1) {
       Cost <- ifelse(DealCycle$InfinityForce[nrow(DealCycle)] > 0, 0, subset(DFCost, DFCost$Skills==DealCycle$Skills[nrow(DealCycle)])$Cost)
       Cost <- ifelse(DealCycle$Skills[nrow(DealCycle)]=="InfinityForce", subset(DFCost, DFCost$Skills==DealCycle$Skills[nrow(DealCycle)])$Cost, Cost)
@@ -533,17 +534,17 @@ DemonSlayerCycle <- function(DealCycle, ATKFinal, BuffFinal, SummonedFinal, Spec
       DealCycle$DF[nrow(DealCycle)] <- DealCycle$DF[nrow(DealCycle)-1]
     }
     
-    if(DealCycle$DFMaxForce[nrow(DealCycle)-1] >= 0 & DealCycle$DFMaxForce[nrow(DealCycle)]==0 & DealCycle$DF[nrow(DealCycle)] < 170) {
-      DealCycle$DF[nrow(DealCycle)] <- min(170, DealCycle$DF[nrow(DealCycle)] + 10)
+    if(DealCycle$DFMaxForce[nrow(DealCycle)-1] >= 0 & DealCycle$DFMaxForce[nrow(DealCycle)]==0 & DealCycle$DF[nrow(DealCycle)] < 230) {
+      DealCycle$DF[nrow(DealCycle)] <- min(230, DealCycle$DF[nrow(DealCycle)] + 10)
       DealCycle$DFMaxForce[nrow(DealCycle)] <- ifelse(nrow(DealCycle)==2, 4000, 4000 - (DealCycle$Time[nrow(DealCycle)] - DealCycle$Time[nrow(DealCycle)-1] - DealCycle$DFMaxForce[nrow(DealCycle)-1]))
-    } else if(DealCycle$DF[nrow(DealCycle)] == 170) {
+    } else if(DealCycle$DF[nrow(DealCycle)] == 230) {
       DealCycle$DFMaxForce[nrow(DealCycle)] <- 4000
     }
     return(DealCycle)
   }
   
   DealCycle <- DCBuff(DealCycle, "MapleSoldier", BuffFinal)
-  DealCycle$DF[2] <- 120 ; DealCycle$DFMaxForce[2] <- 4000
+  DealCycle$DF[2] <- 230 ; DealCycle$DFMaxForce[2] <- 4000
 
   TotalTime <- TotalTime * 1000
   for(i in 1:length(BuffList[[1]])) {
@@ -710,7 +711,7 @@ DemonSlayerCycle <- function(DealCycle, ATKFinal, BuffFinal, SummonedFinal, Spec
         CBRemain <- max(0, CBRemain - DealCycle$Time[1])
         
         ## Demon Bane - Tick
-        for(i in 1:15) {
+        for(i in 1:10) {
           DealCycle <- DCATK(DealCycle, "DemonBaneTick", ATKFinal)
           DealCycle <- DFBBLogic(DealCycle, DFAbsorb, DFCost)
           CryRemain <- max(0, CryRemain - DealCycle$Time[1])
@@ -769,7 +770,7 @@ DemonSlayerCycle <- function(DealCycle, ATKFinal, BuffFinal, SummonedFinal, Spec
         CBRemain <- max(0, CBRemain - DealCycle$Time[1])
         
         ## Demon Bane - Last ATK Tick
-        for(i in 1:20) {
+        for(i in 1:12) {
           DealCycle <- DCATK(DealCycle, "DemonBaneLastTick", ATKFinal)
           DealCycle <- DFBBLogic(DealCycle, DFAbsorb, DFCost)
           CryRemain <- max(0, CryRemain - DealCycle$Time[1])
@@ -865,7 +866,7 @@ DemonSlayerCycle <- function(DealCycle, ATKFinal, BuffFinal, SummonedFinal, Spec
         CBRemain <- max(0, CBRemain - DealCycle$Time[1])
         
         ## Demon Bane - Tick
-        for(i in 1:15) {
+        for(i in 1:10) {
           DealCycle <- DCATK(DealCycle, "DemonBaneTick", ATKFinal)
           DealCycle <- DFBBLogic(DealCycle, DFAbsorb, DFCost)
           CryRemain <- max(0, CryRemain - DealCycle$Time[1])
@@ -924,7 +925,7 @@ DemonSlayerCycle <- function(DealCycle, ATKFinal, BuffFinal, SummonedFinal, Spec
         CBRemain <- max(0, CBRemain - DealCycle$Time[1])
         
         ## Demon Bane - Last ATK Tick
-        for(i in 1:20) {
+        for(i in 1:12) {
           DealCycle <- DCATK(DealCycle, "DemonBaneLastTick", ATKFinal)
           DealCycle <- DFBBLogic(DealCycle, DFAbsorb, DFCost)
           CryRemain <- max(0, CryRemain - DealCycle$Time[1])
