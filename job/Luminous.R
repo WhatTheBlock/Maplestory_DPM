@@ -1,3 +1,6 @@
+library(parallel)
+options(scipen=999)
+
 ## Luminous - Data
 ## Luminous - VMatrix
 LuminousCoreBase <- CoreBuilder(ActSkills=c("DoorofTruth", "PunishingResonator", "BaptismofLightandDarkness", "LiberationOrb", 
@@ -61,7 +64,7 @@ value <- c(40)
 HighWisdom <- data.frame(option, value)
 
 option <- factor(c("FDR", "BDR"), levels=PSkill)
-value <- c(30 + LuminousBase$SkillLv, 15 + floor(LuminousBase$SkillLv / 2))
+value <- c(36 + LuminousBase$SkillLv, 15 + floor(LuminousBase$SkillLv / 2))
 MorningStarfall <- data.frame(option, value)
 
 option <- factor(c("BDR"), levels=PSkill)
@@ -251,28 +254,28 @@ ApocalypseAdd <- rbind(data.frame(option, value), info)
 
 option <- factor(c("IGR", "BDR", "FDR", "CRR"), levels=ASkill)
 value <- c(IGRCalc(c(40 + LuminousSpec$SkillLv, ifelse(GetCoreLv(LuminousCore, "AbsoluteKill")>=40, 20, 0))), 20, FDRCalc(c(2 * GetCoreLv(LuminousCore, "AbsoluteKill"), 5)), 100)
-info <- c(425 + 4 * LuminousSpec$SkillLv, 7, 810, NA, NA, NA, NA, F)
+info <- c(455 + 4 * LuminousSpec$SkillLv, 7, 810, NA, NA, NA, NA, F)
 info <- data.frame(AInfo, info)
 colnames(info) <- c("option", "value")
 AbsoluteKill <- rbind(data.frame(option, value), info)
 
 option <- factor(c("IGR", "BDR", "FDR", "CRR"), levels=ASkill)
 value <- c(IGRCalc(c(40 + LuminousSpec$SkillLv, ifelse(GetCoreLv(LuminousCore, "AbsoluteKill")>=40, 20, 0))), 20, FDRCalc(c(2 * GetCoreLv(LuminousCore, "AbsoluteKill"), 5)), 100)
-info <- c(425 + 4 * LuminousSpec$SkillLv, 7, 810, NA, NA, NA, NA, F)
+info <- c(455 + 4 * LuminousSpec$SkillLv, 7, 810, NA, NA, NA, NA, F)
 info <- data.frame(AInfo, info)
 colnames(info) <- c("option", "value")
 AbsoluteKillEq <- rbind(data.frame(option, value), info)
 
 option <- factor(c("IGR", "BDR", "FDR", "CRR"), levels=ASkill)
 value <- c(IGRCalc(c(40 + LuminousSpec$SkillLv, ifelse(GetCoreLv(LuminousCore, "AbsoluteKill")>=40, 20, 0))), 20, FDRCalc(c(2 * GetCoreLv(LuminousCore, "AbsoluteKill"), 5)), 100)
-info <- c((425 + 4 * LuminousSpec$SkillLv) * 0.5, 7, 810, NA, NA, NA, NA, F)
+info <- c((455 + 4 * LuminousSpec$SkillLv) * 0.5, 7, 810, NA, NA, NA, NA, F)
 info <- data.frame(AInfo, info)
 colnames(info) <- c("option", "value")
 AbsoluteKillAdd <- rbind(data.frame(option, value), info)
 
 option <- factor(c("CRR"), levels=ASkill)
 value <- c(15)
-info <- c(400 + 16 * GetCoreLv(LuminousCore, "PunishingResonator"), 6, 990, 180, 30, T, F, F)
+info <- c(425 + 17 * GetCoreLv(LuminousCore, "PunishingResonator"), 6, 990, 180, 30, T, F, F)
 info <- data.frame(AInfo, info)
 colnames(info) <- c("option", "value")
 PunishingResonator <- rbind(data.frame(option, value), info)
