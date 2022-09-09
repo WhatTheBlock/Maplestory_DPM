@@ -1,3 +1,6 @@
+library(parallel)
+options(scipen=999)
+
 ## DemonAvenger - Data
 ## DemonAvenger - Core
 DemonAvengerCoreBase <- CoreBuilder(ActSkills=c("DemonFrenzy", "BloodFeast", "DimensionSword", "Revenant",
@@ -391,21 +394,21 @@ BloodFeast <- rbind(data.frame(option, value), info)
 
 option <- factor(c("IGR"), levels=ASkill)
 value <- c(100)
-info <- c(850 + 34 * GetCoreLv(DemonAvengerCore, "DimensionSword"), 8, 660, 3000, 120, T, F, F)
+info <- c(925 + 37 * GetCoreLv(DemonAvengerCore, "DimensionSword"), 14, 660, 3000, 120, T, F, F)
 info <- data.frame(AInfo, info)
 colnames(info) <- c("option", "value")
 DimensionSword <- rbind(data.frame(option, value), info) 
 
 option <- factor(c("IGR"), levels=ASkill)
 value <- c(100)
-info <- c(300 + 12 * GetCoreLv(DemonAvengerCore, "DimensionSword"), 6, 660, 210, 120, T, F, F)
+info <- c(450 + 18 * GetCoreLv(DemonAvengerCore, "DimensionSword"), 8, 660, 180, 120, T, F, F)
 info <- data.frame(AInfo, info)
 colnames(info) <- c("option", "value")
 DimensionSwordFast <- rbind(data.frame(option, value), info) 
 
 option <- factor(c("IGR"), levels=ASkill)
 value <- c(30)
-info <- c(300 + 12 * GetCoreLv(DemonAvengerCore, "Revenant"), 9, 0, NA, 240, T, F, F)
+info <- c(450 + 18 * GetCoreLv(DemonAvengerCore, "Revenant"), 12, 0, NA, 240, T, F, F)
 info <- data.frame(AInfo, info)
 colnames(info) <- c("option", "value")
 RevenantAddATK <- rbind(data.frame(option, value), info) 
