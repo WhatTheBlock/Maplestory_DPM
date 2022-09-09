@@ -158,7 +158,7 @@ ExceedStack <- rbind(data.frame(option, value), info)
 
 option <- factor(levels=BSkill)
 value <- c()
-info <- c(60, 0, 0, T, F, F, T)
+info <- c(90, 0, 0, T, F, F, T)
 info <- data.frame(BInfo, info)
 colnames(info) <- c("option", "value")
 ReleaseOverloadBuff <- rbind(data.frame(option, value), info)
@@ -214,7 +214,7 @@ DiabolicRecovery <- rbind(data.frame(option, value), info)
 
 option <- factor(c("IGR"), levels=BSkill)
 value <- c(30 + DemonAvengerBase$SkillLv)
-info <- c(30 + DemonAvengerBase$SkillLv, 0, Delay(870, 2), F, T, F, F)
+info <- c(60 + DemonAvengerBase$SkillLv, 0, Delay(870, 2), F, T, F, F)
 info <- data.frame(BInfo, info)
 colnames(info) <- c("option", "value")
 ArmorBreakBuff <- rbind(data.frame(option, value), info)
@@ -240,7 +240,7 @@ UsefulHyperBody <- Useful$UsefulHyperBody
 
 option <- factor(levels=BSkill)
 value <- c()
-info <- c(30, 240, 1530, F, T, F, F)
+info <- c(15, 120, 1530, F, T, F, F)
 info <- data.frame(BInfo, info)
 colnames(info) <- c("option", "value")
 Revenant <- rbind(data.frame(option, value), info)
@@ -993,7 +993,7 @@ DemonAvengerAddATK <- function(DealCycle, ATKFinal, BuffFinal, SummonedFinal, Sp
     if(DealCycle$Skills[i]!="ReleaseOverloadBuff") {
       DealCycle$ReleaseOverloadFDR[i] <- DealCycle$ReleaseOverloadFDR[i-1]
     }
-    DealCycle$DemonFrenzyFDR[i] <- min(35, floor((500000 - DealCycle$HP[i]) / 5000 / ifelse(FrenzyLevel < 25, 3, 2)))
+    DealCycle$DemonFrenzyFDR[i] <- min(20, floor((500000 - DealCycle$HP[i]) / 5000 / ifelse(FrenzyLevel < 25, 3, 2)))
   }
 
   ## Dummy Reduction
