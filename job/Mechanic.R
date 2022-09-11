@@ -1,3 +1,6 @@
+library(parallel)
+options(scipen=999)
+
 ## Mechanic - Data
 ## Mechanic - VMatrix
 MechanicCoreBase <- CoreBuilder(ActSkills=c("MultipleOption", "MicroMissileContainer", "MetalArmorFullburst", "MechCarrier", 
@@ -61,7 +64,7 @@ value <- c(30)
 MetalArmorTank <- data.frame(option, value)
 
 option <- factor(c("FDR", "CRR", "IGR"), levels=PSkill)
-value <- c(25, 20, 30)
+value <- c(34, 20, 30)
 OverTuning <- data.frame(option, value)
 
 option <- factor(c("Mastery", "ATK"), levels=PSkill)
@@ -69,7 +72,7 @@ value <- c(70 + ceiling(MechanicBase$PSkillLv/2), 55 + ceiling(MechanicBase$PSki
 MetalArmorExtreme <- data.frame(option, value)
 
 option <- factor(c("BDR", "SummonDuration"), levels=PSkill)
-value <- c((6 + ceiling(MechanicBase$PSkillLv/5)) * 3, 40 + MechanicBase$PSkillLv)
+value <- c((5 + ceiling(MechanicBase$PSkillLv/5)) * 3, 40 + MechanicBase$PSkillLv)
 RobotMastery <- data.frame(option, value)
 
 option <- factor(c("ATK"), levels=PSkill)
