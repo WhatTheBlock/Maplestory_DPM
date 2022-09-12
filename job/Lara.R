@@ -403,14 +403,14 @@ SeedofMountain <- rbind(data.frame(option, value), info) ## StartATK : 2720ms
 
 option <- factor(c("IGR", "FDR"), levels=ASkill)
 value <- c(ifelse(GetCoreLv(LaraCore, "Awakening")>=40, 20, 0), 2 * GetCoreLv(LaraCore, "Awakening"))
-info <- c(105 + 95 + LaraSpec$PSkillLv, 4, 720, 90, Cooldown(11, T, LaraSpec$CoolReduceP, LaraSpec$CoolReduce), F, T, F)
+info <- c(105 + 95 + LaraSpec$PSkillLv, 4, 720, 90, Cooldown(9, T, LaraSpec$CoolReduceP, LaraSpec$CoolReduce), F, T, F)
 info <- data.frame(AInfo, info)
 colnames(info) <- c("option", "value")
 Awakening1 <- rbind(data.frame(option, value), info)
 
 option <- factor(c("IGR", "FDR"), levels=ASkill)
 value <- c(ifelse(GetCoreLv(LaraCore, "Awakening")>=40, 20, 0), 2 * GetCoreLv(LaraCore, "Awakening"))
-info <- c((105 + 95 + LaraSpec$PSkillLv) * 0.6, 4, 0, 90, Cooldown(11, T, LaraSpec$CoolReduceP, LaraSpec$CoolReduce), F, T, F)
+info <- c((105 + 95 + LaraSpec$PSkillLv) * 0.6, 4, 0, 90, Cooldown(9, T, LaraSpec$CoolReduceP, LaraSpec$CoolReduce), F, T, F)
 info <- data.frame(AInfo, info)
 colnames(info) <- c("option", "value")
 Awakening2 <- rbind(data.frame(option, value), info)
@@ -452,7 +452,7 @@ SunlightSphere2 <- rbind(data.frame(option, value), info)
 
 option <- factor(levels=ASkill)
 value <- c()
-info <- c(0, 0, 300, 0, Cooldown(3, T, LaraSpec$CoolReduceP, LaraSpec$CoolReduce) + 7, F, F, F)
+info <- c(0, 0, 300, 0, Cooldown(3, T, LaraSpec$CoolReduceP, LaraSpec$CoolReduce) + 4, F, F, F)
 info <- data.frame(AInfo, info)
 colnames(info) <- c("option", "value")
 EarthVeinSwitch <- rbind(data.frame(option, value), info) ## ATKSpeed Not Applied
