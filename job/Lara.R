@@ -1,3 +1,6 @@
+library(parallel)
+options(scipen=999)
+
 ## Lara - Data
 ## Lara - Core
 LaraCoreBase <- CoreBuilder(ActSkills=c("HugeStretch", "SunRiverMountWind", "SurgingSpirit", "RidgeZigzag",
@@ -337,52 +340,59 @@ MountainKid <- rbind(data.frame(option, value), info)
 
 option <- factor(c("BDR", "IGR", "FDR"), levels=ASkill)
 value <- c(25 + floor(LaraSpec$SummonedDuration / 2), IGRCalc(c(15, ifelse(GetCoreLv(LaraCore, "EarthVeinEruption")>=40, 20, 0))), 2 * GetCoreLv(LaraCore, "EarthVeinEruption"))
-info <- c(215 + 120 + 325, 5, 0, NA, NA, NA, NA, F)
+info <- c(750, 5, 0, NA, NA, NA, NA, F)
 info <- data.frame(AInfo, info)
 colnames(info) <- c("option", "value")
 HeavingRiver <- rbind(data.frame(option, value), info)
 
 option <- factor(c("BDR", "IGR", "FDR"), levels=ASkill)
 value <- c(25 + floor(LaraSpec$SummonedDuration / 2), IGRCalc(c(15, ifelse(GetCoreLv(LaraCore, "EarthVeinEruption")>=40, 20, 0))), 2 * GetCoreLv(LaraCore, "EarthVeinEruption"))
-info <- c(680, 8, 0, NA, NA, NA, NA, F)
+info <- c(860, 8, 0, NA, NA, NA, NA, F)
 info <- data.frame(AInfo, info)
 colnames(info) <- c("option", "value")
 HeavingRiverHuge <- rbind(data.frame(option, value), info)
 
 option <- factor(c("BDR", "IGR", "FDR"), levels=ASkill)
 value <- c(25 + floor(LaraSpec$SummonedDuration / 2), IGRCalc(c(15, ifelse(GetCoreLv(LaraCore, "EarthVeinEruption")>=40, 20, 0))), 2 * GetCoreLv(LaraCore, "EarthVeinEruption"))
-info <- c(63 + 35 + 232, 5, 0, NA, NA, NA, NA, F)
+info <- c(445, 5, 0, NA, NA, NA, NA, F)
 info <- data.frame(AInfo, info)
 colnames(info) <- c("option", "value")
 WhirlWind <- rbind(data.frame(option, value), info)
 
 option <- factor(c("BDR", "IGR", "FDR"), levels=ASkill)
 value <- c(25 + floor(LaraSpec$SummonedDuration / 2), IGRCalc(c(15, ifelse(GetCoreLv(LaraCore, "EarthVeinEruption")>=40, 20, 0))), 2 * GetCoreLv(LaraCore, "EarthVeinEruption"))
-info <- c(120 + 48 + 365, 6, 0, NA, NA, NA, NA, F)
+info <- c(750, 6, 0, NA, NA, NA, NA, F)
 info <- data.frame(AInfo, info)
 colnames(info) <- c("option", "value")
 SunriseWellGiant <- rbind(data.frame(option, value), info)
 
 option <- factor(c("BDR", "IGR", "FDR"), levels=ASkill)
 value <- c(25 + floor(LaraSpec$SummonedDuration / 2), IGRCalc(c(15, ifelse(GetCoreLv(LaraCore, "EarthVeinEruption")>=40, 20, 0))), 2 * GetCoreLv(LaraCore, "EarthVeinEruption"))
-info <- c(85 + 48 + 205, 1, 0, 1000, NA, NA, NA, F)
+info <- c(420, 1, 0, 1000, NA, NA, NA, F)
 info <- data.frame(AInfo, info)
 colnames(info) <- c("option", "value")
 SunriseWellFloor <- rbind(data.frame(option, value), info)
 
 option <- factor(c("BDR", "IGR", "FDR"), levels=ASkill)
 value <- c(25 + floor(LaraSpec$SummonedDuration / 2), IGRCalc(c(15, ifelse(GetCoreLv(LaraCore, "EarthVeinEruption")>=40, 20, 0))), 2 * GetCoreLv(LaraCore, "EarthVeinEruption"))
-info <- c(75 + 48 + 250, 3, 0, NA, NA, NA, NA, F)
+info <- c(450, 3, 0, NA, NA, NA, NA, F)
 info <- data.frame(AInfo, info)
 colnames(info) <- c("option", "value")
 SunriseWellVolcanicBomb1 <- rbind(data.frame(option, value), info)
 
 option <- factor(c("BDR", "IGR", "FDR"), levels=ASkill)
 value <- c(25 + floor(LaraSpec$SummonedDuration / 2), IGRCalc(c(15, ifelse(GetCoreLv(LaraCore, "EarthVeinEruption")>=40, 20, 0))), 2 * GetCoreLv(LaraCore, "EarthVeinEruption"))
-info <- c((75 + 48 + 250) * 0.9, 3 * 4, 0, NA, NA, NA, NA, F)
+info <- c(450 * 0.9, 3 * 4, 0, NA, NA, NA, NA, F)
 info <- data.frame(AInfo, info)
 colnames(info) <- c("option", "value")
 SunriseWellVolcanicBomb2 <- rbind(data.frame(option, value), info)
+
+option <- factor(c("BDR", "IGR", "FDR"), levels=ASkill)
+value <- c(25 + floor(LaraSpec$SummonedDuration / 2), IGRCalc(c(15, ifelse(GetCoreLv(LaraCore, "EarthVeinEruption")>=40, 20, 0))), 2 * GetCoreLv(LaraCore, "EarthVeinEruption"))
+info <- c(125, 5 * 5, 0, NA, NA, NA, NA, F)
+info <- data.frame(AInfo, info)
+colnames(info) <- c("option", "value")
+SunriseWellVolcanicBombDot <- rbind(data.frame(option, value), info)
 
 option <- factor(c("BDR", "IGR", "FDR"), levels=ASkill)
 value <- c(0, ifelse(GetCoreLv(LaraCore, "SeedofMountain")>=40, 20, 0), 2 * GetCoreLv(LaraCore, "SeedofMountain"))
@@ -393,14 +403,14 @@ SeedofMountain <- rbind(data.frame(option, value), info) ## StartATK : 2720ms
 
 option <- factor(c("IGR", "FDR"), levels=ASkill)
 value <- c(ifelse(GetCoreLv(LaraCore, "Awakening")>=40, 20, 0), 2 * GetCoreLv(LaraCore, "Awakening"))
-info <- c(105 + 45 + LaraSpec$PSkillLv, 4, 720, 90, Cooldown(11, T, LaraSpec$CoolReduceP, LaraSpec$CoolReduce), F, T, F)
+info <- c(105 + 95 + LaraSpec$PSkillLv, 4, 720, 90, Cooldown(11, T, LaraSpec$CoolReduceP, LaraSpec$CoolReduce), F, T, F)
 info <- data.frame(AInfo, info)
 colnames(info) <- c("option", "value")
 Awakening1 <- rbind(data.frame(option, value), info)
 
 option <- factor(c("IGR", "FDR"), levels=ASkill)
 value <- c(ifelse(GetCoreLv(LaraCore, "Awakening")>=40, 20, 0), 2 * GetCoreLv(LaraCore, "Awakening"))
-info <- c((105 + 45 + LaraSpec$PSkillLv) * 0.6, 4, 0, 90, Cooldown(11, T, LaraSpec$CoolReduceP, LaraSpec$CoolReduce), F, T, F)
+info <- c((105 + 95 + LaraSpec$PSkillLv) * 0.6, 4, 0, 90, Cooldown(11, T, LaraSpec$CoolReduceP, LaraSpec$CoolReduce), F, T, F)
 info <- data.frame(AInfo, info)
 colnames(info) <- c("option", "value")
 Awakening2 <- rbind(data.frame(option, value), info)
@@ -414,24 +424,31 @@ EarthVeinTrace <- rbind(data.frame(option, value), info)
 
 option <- factor(c("BDR", "IGR", "FDR"), levels=ASkill)
 value <- c(25, IGRCalc(c(15, ifelse(GetCoreLv(LaraCore, "EarthVeinAbsorb")>=40, 20, 0))), 2 * GetCoreLv(LaraCore, "EarthVeinAbsorb"))
-info <- c(590 + 12 * LaraSpec$PSkillLv, 6, 0, 0, 2.5, F, F, F)
+info <- c(510 + 12 * LaraSpec$PSkillLv, 10, 0, 0, 2.5, F, F, F)
 info <- data.frame(AInfo, info)
 colnames(info) <- c("option", "value")
 RiverPuddle <- rbind(data.frame(option, value), info)
 
 option <- factor(c("BDR", "IGR", "FDR"), levels=ASkill)
 value <- c(25, IGRCalc(c(15, ifelse(GetCoreLv(LaraCore, "EarthVeinAbsorb")>=40, 20, 0))), 2 * GetCoreLv(LaraCore, "EarthVeinAbsorb"))
-info <- c(255 + 5 * LaraSpec$PSkillLv, 2, 0, 0, 2.5, F, F, F)
+info <- c(250 + 5 * LaraSpec$PSkillLv, 3, 0, 0, 2.5, F, F, F)
 info <- data.frame(AInfo, info)
 colnames(info) <- c("option", "value")
 ChillyBleakWind <- rbind(data.frame(option, value), info)
 
 option <- factor(c("BDR", "IGR", "FDR"), levels=ASkill)
 value <- c(25, IGRCalc(c(15, ifelse(GetCoreLv(LaraCore, "EarthVeinAbsorb")>=40, 20, 0))), 2 * GetCoreLv(LaraCore, "EarthVeinAbsorb"))
-info <- c(230 + 5 * LaraSpec$PSkillLv, 5 * 6, 0, 0, 2.5, F, F, F)
+info <- c(265 + 5 * LaraSpec$PSkillLv, 5, 0, 0, 2.5, F, F, F)
 info <- data.frame(AInfo, info)
 colnames(info) <- c("option", "value")
 SunlightSphere <- rbind(data.frame(option, value), info)
+
+option <- factor(c("BDR", "IGR", "FDR"), levels=ASkill)
+value <- c(25, IGRCalc(c(15, ifelse(GetCoreLv(LaraCore, "EarthVeinAbsorb")>=40, 20, 0))), 2 * GetCoreLv(LaraCore, "EarthVeinAbsorb"))
+info <- c((265 + 5 * LaraSpec$PSkillLv) * 0.6, 5 * 5, 0, 0, 2.5, F, F, F)
+info <- data.frame(AInfo, info)
+colnames(info) <- c("option", "value")
+SunlightSphere2 <- rbind(data.frame(option, value), info)
 
 option <- factor(levels=ASkill)
 value <- c()
@@ -492,9 +509,9 @@ RidgeZigzag <- rbind(data.frame(option, value), info) ## Minimum Delay 240ms, St
 
 LaraATK <- Attack(list(SpiritSeeding=SpiritSeeding, MountainKid=MountainKid, 
                        HeavingRiver=HeavingRiver, HeavingRiverHuge=HeavingRiverHuge, WhirlWind=WhirlWind, SunriseWellGiant=SunriseWellGiant, SunriseWellFloor=SunriseWellFloor, 
-                       SunriseWellVolcanicBomb1=SunriseWellVolcanicBomb1, SunriseWellVolcanicBomb2=SunriseWellVolcanicBomb2, 
+                       SunriseWellVolcanicBomb1=SunriseWellVolcanicBomb1, SunriseWellVolcanicBomb2=SunriseWellVolcanicBomb2, SunriseWellVolcanicBombDot=SunriseWellVolcanicBombDot, 
                        SeedofMountain=SeedofMountain, Awakening1=Awakening1, Awakening2=Awakening2, EarthVeinTrace=EarthVeinTrace, 
-                       RiverPuddle=RiverPuddle, ChillyBleakWind=ChillyBleakWind, SunlightSphere=SunlightSphere, 
+                       RiverPuddle=RiverPuddle, ChillyBleakWind=ChillyBleakWind, SunlightSphere=SunlightSphere, SunlightSphere2=SunlightSphere2, 
                        EarthVeinSwitch=EarthVeinSwitch, FreeEarthVein=FreeEarthVein, 
                        HugeStretch1=HugeStretch1, HugeStretch2=HugeStretch2, SunRiverMountWind1=SunRiverMountWind1, SunRiverMountWind2=SunRiverMountWind2, SurgingSpirit=SurgingSpirit, RidgeZigzag=RidgeZigzag, 
                        SpiderInMirror=SpiderInMirror))
