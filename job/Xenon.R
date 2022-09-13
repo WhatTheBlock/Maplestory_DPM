@@ -1,3 +1,6 @@
+library(parallel)
+options(scipen=999)
+
 ## Xenon - Data
 ## Xenon - Core
 XenonCoreBase <- CoreBuilder(ActSkills=c("MegaSmasher", "OverloadMode", "HologramGrafityFusion", "PhotonRay",
@@ -374,7 +377,7 @@ TriangleFormation <- rbind(data.frame(option, value), info)
 
 option <- factor(c("BDR", "IGR", "FDR"), levels=ASkill)
 value <- c(20, IGRCalc(c(30 + XenonSpec$SkillLv, 10, ifelse(GetCoreLv(XenonCore, "FuzzylopMasquerade")>=40, 20, 0))), 2 * GetCoreLv(XenonCore, "FuzzylopMasquerade"))
-info <- c(345 + 2 * XenonSpec$SkillLv, 7, 870, NA, NA, NA, NA, F)
+info <- c(360 + 2 * XenonSpec$SkillLv, 7, 870, NA, NA, NA, NA, F)
 info <- data.frame(AInfo, info)
 colnames(info) <- c("option", "value")
 FuzzylopMasquerade <- rbind(data.frame(option, value), info)
@@ -395,7 +398,7 @@ ExtraSupply <- rbind(data.frame(option, value), info)
 
 option <- factor(levels=ASkill)
 value <- c()
-info <- c(275 + 10 * GetCoreLv(XenonCore, "MegaSmasher"), 6, 1000, 150, 165, T, F, F)
+info <- c(300 + 12 * GetCoreLv(XenonCore, "MegaSmasher"), 6, 1000, 120, 165, T, F, F)
 info <- data.frame(AInfo, info)
 colnames(info) <- c("option", "value")
 MegaSmasher <- rbind(data.frame(option, value), info)
