@@ -2429,7 +2429,7 @@ XenonDealCalc <- function(DealCycle, ATKSkillsList, BuffList, SummonedSkillsList
     }
     return(Deal)
   }
-  Deal <- mcmapply(DealCalcEach, i=1:nrow(DealCycle), SIMPLIFY=T, mc.cores=Cores)
+  Deal <- mcmapply(DealCalcEach, i=1:nrow(DealCycle), SIMPLIFY=T, mc.cores=1)
   return(Deal)
 }
 XenonDealCalcWithMaxDMR <- function(DealCycle, ATKSkillsList, BuffList, SummonedSkillsList, Specs, Cores=(detectCores(logical=F)-1)) {
@@ -2532,7 +2532,7 @@ XenonDealCalcWithMaxDMR <- function(DealCycle, ATKSkillsList, BuffList, Summoned
     }
     return(Deal)
   }
-  Deal <- mcmapply(DealCalcEach, i=1:nrow(DealCycle), SIMPLIFY=T, mc.cores=Cores)
+  Deal <- mcmapply(DealCalcEach, i=1:nrow(DealCycle), SIMPLIFY=T, mc.cores=1)
   return(Deal)
 }
 XenonOptimization1 <- function(DealCycle, ATKSkillsList, BuffList, SummonedSkillsList, Specs, UnionBDRIGR, Cores=(detectCores(logical=F)-1)) {
@@ -2826,7 +2826,7 @@ SpecMeanXenon <- function(JobName, DealCycle, DealData, ATKSkillsList, BuffList,
     }
     return(SpecEach)
   }
-  SpecEach <- mcmapply(SpecCalcEach, i=1:nrow(DealCycle), SIMPLIFY=T, mc.cores=Cores)
+  SpecEach <- mcmapply(SpecCalcEach, i=1:nrow(DealCycle), SIMPLIFY=T, mc.cores=1)
   SpecEach <- as.data.frame(SpecEach)
   for(i in 1:ncol(SpecEach)) {
     SpecEach[, i] <- unlist(SpecEach[, i])
