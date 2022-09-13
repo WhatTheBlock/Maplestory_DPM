@@ -401,7 +401,7 @@ DimensionSword <- rbind(data.frame(option, value), info)
 
 option <- factor(c("IGR"), levels=ASkill)
 value <- c(100)
-info <- c(450 + 18 * GetCoreLv(DemonAvengerCore, "DimensionSword"), 8, 660, 180, 120, T, F, F)
+info <- c(450 + 18 * GetCoreLv(DemonAvengerCore, "DimensionSword"), 8, 660, 170, 120, T, F, F)
 info <- data.frame(AInfo, info)
 colnames(info) <- c("option", "value")
 DimensionSwordFast <- rbind(data.frame(option, value), info) 
