@@ -207,7 +207,7 @@ MapleSoldier <- rbind(data.frame(option, value), info)
 
 option <- factor(levels=BSkill)
 value <- c()
-info <- c(10, 90, 900, F, F, F, F)
+info <- c(10, 90, 780, F, F, F, F)
 info <- data.frame(BInfo, info)
 colnames(info) <- c("option", "value")
 AmaranthGenerator <- rbind(data.frame(option, value), info)
@@ -377,7 +377,7 @@ TriangleFormation <- rbind(data.frame(option, value), info)
 
 option <- factor(c("BDR", "IGR", "FDR"), levels=ASkill)
 value <- c(20, IGRCalc(c(30 + XenonSpec$SkillLv, 10, ifelse(GetCoreLv(XenonCore, "FuzzylopMasquerade")>=40, 20, 0))), 2 * GetCoreLv(XenonCore, "FuzzylopMasquerade"))
-info <- c(360 + 2 * XenonSpec$SkillLv, 7, 870, NA, NA, NA, NA, F)
+info <- c(360 + 2 * XenonSpec$SkillLv, 7, 840, NA, NA, NA, NA, F)
 info <- data.frame(AInfo, info)
 colnames(info) <- c("option", "value")
 FuzzylopMasquerade <- rbind(data.frame(option, value), info)
@@ -588,10 +588,10 @@ XenonCycle <- function(DealCycle, ATKFinal, BuffFinal, SummonedFinal, Spec,
       }
     } else if(DealCycle$SurplusSupplyDummy[nrow(DealCycle)-1] >= 0 & DealCycle$SurplusSupplyDummy[nrow(DealCycle)]==0 & DealCycle$OverloadMode[nrow(DealCycle)] > 0) {
       DealCycle$SurplusSupplyStack[nrow(DealCycle)] <- min(40, DealCycle$SurplusSupplyStack[nrow(DealCycle)] + 1)
-      DealCycle$SurplusSupplyDummy[nrow(DealCycle)] <- ifelse(nrow(DealCycle)==2, 2000, 2000 - (DealCycle$Time[nrow(DealCycle)] - DealCycle$Time[nrow(DealCycle)-1] - DealCycle$SurplusSupplyDummy[nrow(DealCycle)-1]))
+      DealCycle$SurplusSupplyDummy[nrow(DealCycle)] <- ifelse(nrow(DealCycle)==2, 1000, 1000 - (DealCycle$Time[nrow(DealCycle)] - DealCycle$Time[nrow(DealCycle)-1] - DealCycle$SurplusSupplyDummy[nrow(DealCycle)-1]))
       if(DealCycle$SurplusSupplyDummy[nrow(DealCycle)] < 0) {
         DealCycle$SurplusSupplyStack[nrow(DealCycle)] <- min(40, DealCycle$SurplusSupplyStack[nrow(DealCycle)] + 1)
-        DealCycle$SurplusSupplyDummy[nrow(DealCycle)] <- DealCycle$SurplusSupplyDummy[nrow(DealCycle)] + 2000
+        DealCycle$SurplusSupplyDummy[nrow(DealCycle)] <- DealCycle$SurplusSupplyDummy[nrow(DealCycle)] + 1000
       }
     }
     return(DealCycle)
