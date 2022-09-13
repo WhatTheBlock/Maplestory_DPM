@@ -302,7 +302,7 @@ DevilCry <- rbind(data.frame(option, value), info)
 
 option <- factor(c("BDR", "IGR", "FDR"), levels=ASkill)
 value <- c(50, IGRCalc(c(50, ifelse(GetCoreLv(DemonSlayerCore, "Cerberus")>=40, 20, 0))), 2 * GetCoreLv(DemonSlayerCore, "Cerberus"))
-info <- c(450, 6, 783, NA, 5, F, F, F)
+info <- c(450, 6, 780, NA, 5, F, F, F)
 info <- data.frame(AInfo, info)
 colnames(info) <- c("option", "value")
 Cerberus <- rbind(data.frame(option, value), info)
