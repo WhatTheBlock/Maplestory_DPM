@@ -337,7 +337,7 @@ OrthrosGeryon <- rbind(data.frame(option, value), info)
 
 option <- factor(c("CRR", "IGR", "FDR"), levels=ASkill)
 value <- c(50, 30, 90)
-info <- c(0, 0, 240, NA, 120, T, F, F) ## StartATK : 240ms, 11 Hits(Check Needed)
+info <- c(0, 0, 120, NA, 120, T, F, F) ## StartATK : 120ms, 11 Hits
 info <- data.frame(AInfo, info)
 colnames(info) <- c("option", "value")
 DemonBanePre <- rbind(data.frame(option, value), info)
@@ -351,14 +351,14 @@ DemonBaneTick <- rbind(data.frame(option, value), info)
 
 option <- factor(c("CRR", "IGR", "FDR"), levels=ASkill)
 value <- c(50, 30, 90)
-info <- c(250 + 11 * GetCoreLv(DemonSlayerCore, "DemonBane"), 6, 3000 - 240 * 11, NA, 120, T, F, F)
+info <- c(250 + 11 * GetCoreLv(DemonSlayerCore, "DemonBane"), 6, 0, NA, 120, T, F, F)
 info <- data.frame(AInfo, info)
 colnames(info) <- c("option", "value")
 DemonBaneEnd <- rbind(data.frame(option, value), info)
 
 option <- factor(c("CRR", "IGR", "FDR"), levels=ASkill)
 value <- c(50, 30, 90)
-info <- c(0, 0, 600, NA, 120, T, F, F) ## StartATK : 600ms, 13 Hits(Check Needed)
+info <- c(0, 0, 360, NA, 120, T, F, F) ## StartATK : 360ms, 13 Hits
 info <- data.frame(AInfo, info)
 colnames(info) <- c("option", "value")
 DemonBaneLastPre <- rbind(data.frame(option, value), info)
