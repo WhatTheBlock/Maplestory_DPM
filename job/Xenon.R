@@ -588,10 +588,10 @@ XenonCycle <- function(DealCycle, ATKFinal, BuffFinal, SummonedFinal, Spec,
       }
     } else if(DealCycle$SurplusSupplyDummy[nrow(DealCycle)-1] >= 0 & DealCycle$SurplusSupplyDummy[nrow(DealCycle)]==0 & DealCycle$OverloadMode[nrow(DealCycle)] > 0) {
       DealCycle$SurplusSupplyStack[nrow(DealCycle)] <- min(40, DealCycle$SurplusSupplyStack[nrow(DealCycle)] + 1)
-      DealCycle$SurplusSupplyDummy[nrow(DealCycle)] <- ifelse(nrow(DealCycle)==2, 1000, 1000 - (DealCycle$Time[nrow(DealCycle)] - DealCycle$Time[nrow(DealCycle)-1] - DealCycle$SurplusSupplyDummy[nrow(DealCycle)-1]))
+      DealCycle$SurplusSupplyDummy[nrow(DealCycle)] <- ifelse(nrow(DealCycle)==2, 2000, 2000 - (DealCycle$Time[nrow(DealCycle)] - DealCycle$Time[nrow(DealCycle)-1] - DealCycle$SurplusSupplyDummy[nrow(DealCycle)-1]))
       if(DealCycle$SurplusSupplyDummy[nrow(DealCycle)] < 0) {
         DealCycle$SurplusSupplyStack[nrow(DealCycle)] <- min(40, DealCycle$SurplusSupplyStack[nrow(DealCycle)] + 1)
-        DealCycle$SurplusSupplyDummy[nrow(DealCycle)] <- DealCycle$SurplusSupplyDummy[nrow(DealCycle)] + 1000
+        DealCycle$SurplusSupplyDummy[nrow(DealCycle)] <- DealCycle$SurplusSupplyDummy[nrow(DealCycle)] + 2000
       }
     }
     return(DealCycle)
