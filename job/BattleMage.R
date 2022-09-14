@@ -1,3 +1,6 @@
+library(parallel)
+options(scipen=999)
+
 ## BattleMage - Data
 ## BattleMage - VMatrix
 BattleMageCoreBase <- CoreBuilder(ActSkills=c("UnionAura", "BlackMagicAltar", "GrimReeper", "AbyssalLightning", CommonV("Wizard", "Resistance")), 
@@ -72,7 +75,7 @@ value <- c(20, 10, 10)
 DebuffAura <- data.frame(option, value)
 
 option <- factor(c("BDR", "CRR", "CDMR"), levels=PSkill)
-value <- c(40 + BattleMageBase$SkillLv, 20 + ceiling(BattleMageBase$SkillLv/3), 10)
+value <- c(25 + BattleMageBase$SkillLv, 20 + ceiling(BattleMageBase$SkillLv/3), 10)
 BattleRage <- data.frame(option, value)
 
 option <- factor(c("Mastery", "ATK", "CDMR"), levels=PSkill)
@@ -80,7 +83,7 @@ value <- c(70 + ceiling(BattleMageBase$SkillLv/2), 30 + BattleMageBase$SkillLv, 
 StaffExpert <- data.frame(option, value)
 
 option <- factor(c("ATKP", "BDR", "IGR"), levels=PSkill)
-value <- c(25 + floor(BattleMageBase$SkillLv/2), 10 + ceiling(BattleMageBase$SkillLv/3), 30 + BattleMageBase$SkillLv)
+value <- c(10 + floor(BattleMageBase$SkillLv/2), 10 + ceiling(BattleMageBase$SkillLv/3), 30 + BattleMageBase$SkillLv)
 SpellBoost <- data.frame(option, value)
 
 option <- factor(c("ATK"), levels=PSkill)
@@ -248,7 +251,7 @@ FinishBlowUAMOD <- rbind(data.frame(option, value), info)
 
 option <- factor(c("BDR", "IGR", "FDR"), levels=ASkill) 
 value <- c(60 + BattleMageSpec$SkillLv, ifelse(GetCoreLv(BattleMageCore, "DarkLightning")>=40, 20, 0), 2 * GetCoreLv(BattleMageCore, "DarkLightning"))
-info <- c(225, 4, 0, NA, NA, NA, NA, F)
+info <- c(100, 4, 0, NA, NA, NA, NA, F)
 info <- data.frame(AInfo, info)
 colnames(info) <- c("option", "value")
 DarkLightning <- rbind(data.frame(option, value), info)
@@ -262,7 +265,7 @@ DarkLightningAL <- rbind(data.frame(option, value), info)
 
 option <- factor(c("BDR", "IGR", "FDR"), levels=ASkill) 
 value <- c(80 + BattleMageSpec$SkillLv, ifelse(GetCoreLv(BattleMageCore, "DarkLightning")>=40, 20, 0), 2 * GetCoreLv(BattleMageCore, "DarkLightning"))
-info <- c(350, 4, 0, NA, NA, NA, NA, F)
+info <- c(400, 4, 0, NA, NA, NA, NA, F)
 info <- data.frame(AInfo, info)
 colnames(info) <- c("option", "value")
 DarkLightningMark <- rbind(data.frame(option, value), info)
