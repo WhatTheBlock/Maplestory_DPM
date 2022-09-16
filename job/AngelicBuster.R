@@ -130,7 +130,7 @@ MapleSoldier <- rbind(data.frame(option, value), info)
 
 option <- factor(c("FDR"), levels=BSkill)
 value <- c(25 + 2 * floor(AngelicBusterBase$SkillLv/3))
-info <- c(20, Cooldown(40 - AngelicBusterBase$SkillLv, T, 25 + AngelicBusterBase$UnionChrs$CoolReduceP, AngelicBusterBase$CoolReduce), Delay(870, 2), F, F, T, F)
+info <- c(60, Cooldown(40 - AngelicBusterBase$SkillLv, T, 25 + AngelicBusterBase$UnionChrs$CoolReduceP, AngelicBusterBase$CoolReduce), Delay(870, 2), F, F, T, F)
 info <- data.frame(BInfo, info)
 colnames(info) <- c("option", "value")
 FinituraFettucciaBuff <- rbind(data.frame(option, value), info)
