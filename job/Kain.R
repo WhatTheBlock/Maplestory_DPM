@@ -66,7 +66,7 @@ value <- c(30 + KainBase$PSkillLv)
 GrindingII <- data.frame(option, value)
 
 option <- factor(c("FDR", "CDMR", "IGR"), levels=PSkill)
-value <- c(20 + floor(KainBase$PSkillLv/2), 20 + KainBase$PSkillLv, 30 + KainBase$PSkillLv)
+value <- c(24 + floor(KainBase$PSkillLv/2), 20 + KainBase$PSkillLv, 30 + KainBase$PSkillLv)
 Dogma <- data.frame(option, value)
 
 option <- factor(c("Mastery", "FDR", "ATK", "CDMR"), levels=PSkill)
