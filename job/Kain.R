@@ -1,3 +1,6 @@
+library(parallel)
+options(scipen=999)
+
 ## Kain - Data
 ## Kain - Core
 KainCoreBase <- CoreBuilder(ActSkills=c("DargonBurst", "FatalBlitz", "ThanatosDescent", "GripofAgony", 
@@ -116,7 +119,7 @@ colnames(info) <- c("option", "value")
 DeathBlessingStack <- rbind(data.frame(option, value), info)
 
 option <- factor("FDR", levels=BSkill)
-value <- c(10 + 10 + floor(KainBase$PSkillLv/2))
+value <- c(10 + 18 + floor(KainBase$PSkillLv/2))
 info <- c(5, 10, 0, F, F, F, T)
 info <- data.frame(BInfo, info)
 colnames(info) <- c("option", "value")
@@ -560,7 +563,7 @@ ThanatosDescentEndEnd <- rbind(data.frame(option, value), info)
 
 option <- factor(levels=ASkill)
 value <- c()
-info <- c(600 + 24 * GetCoreLv(KainCore, "GripofAgony"), 6, 660, 330, 90, T, F, F)
+info <- c(500 + 20 * GetCoreLv(KainCore, "GripofAgony"), 8, 660, 330, 90, T, F, F)
 info <- data.frame(AInfo, info)
 colnames(info) <- c("option", "value")
 GripofAgony <- rbind(data.frame(option, value), info)}
