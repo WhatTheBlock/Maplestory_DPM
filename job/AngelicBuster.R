@@ -1,3 +1,6 @@
+library(parallel)
+options(scipen=999)
+
 ## AngelicBuster - Data
 ## AngelicBuster - VMatrix
 AngelicBusterCoreBase <- CoreBuilder(ActSkills=c("EnergeBust", "Spotlight", "MascotFamiliar", "TrinityFusion", 
@@ -127,7 +130,7 @@ MapleSoldier <- rbind(data.frame(option, value), info)
 
 option <- factor(c("FDR"), levels=BSkill)
 value <- c(25 + 2 * floor(AngelicBusterBase$SkillLv/3))
-info <- c(20, Cooldown(40 - AngelicBusterBase$SkillLv, T, 25 + AngelicBusterBase$UnionChrs$CoolReduceP, AngelicBusterBase$CoolReduce), Delay(1350, 2), F, F, T, F)
+info <- c(20, Cooldown(40 - AngelicBusterBase$SkillLv, T, 25 + AngelicBusterBase$UnionChrs$CoolReduceP, AngelicBusterBase$CoolReduce), Delay(870, 2), F, F, T, F)
 info <- data.frame(BInfo, info)
 colnames(info) <- c("option", "value")
 FinituraFettucciaBuff <- rbind(data.frame(option, value), info)
@@ -285,21 +288,21 @@ SpiderInMirrorWait <- SIM$SpiderInMirrorWait
 ## Hyper : Trinity - Reinforce / Split Attack, Soul Seeker - Reinforce / Make Up,  Finitura Fettuccia - CoolTime Reduce
 {option <- factor(c("IGR", "BDR", "FDR"), levels=ASkill)
 value <- c(IGRCalc(c(30, ifelse(GetCoreLv(AngelicBusterCore, "Trinity")>=40, 20, 0))), 50, 2 * GetCoreLv(AngelicBusterCore, "Trinity")) 
-info <- c(720 + 12 * AngelicBusterSpec$SkillLv - 70, 3, 480, NA, NA, NA, NA, F) 
+info <- c(630 + 11 * AngelicBusterSpec$SkillLv, 7, 780, NA, NA, NA, NA, F) 
 info <- data.frame(AInfo, info) 
 colnames(info) <- c("option", "value")
 Trinity1 <- rbind(data.frame(option, value), info) 
 
 option <- factor(c("IGR", "BDR", "FDR"), levels=ASkill)
 value <- c(IGRCalc(c(30, ifelse(GetCoreLv(AngelicBusterCore, "Trinity")>=40, 20, 0))), 50, 2 * GetCoreLv(AngelicBusterCore, "Trinity")) 
-info <- c(720 + 12 * AngelicBusterSpec$SkillLv - 70, 4, 480, NA, NA, NA, NA, F) 
+info <- c(0, 0, 0, NA, NA, NA, NA, F) 
 info <- data.frame(AInfo, info) 
 colnames(info) <- c("option", "value")
 Trinity2 <- rbind(data.frame(option, value), info) 
 
 option <- factor(c("IGR", "BDR", "FDR"), levels=ASkill)
 value <- c(IGRCalc(c(30, ifelse(GetCoreLv(AngelicBusterCore, "Trinity")>=40, 20, 0))), 50, 2 * GetCoreLv(AngelicBusterCore, "Trinity")) 
-info <- c(720 + 12 * AngelicBusterSpec$SkillLv - 70, 5, 450, NA, NA, NA, NA, F) 
+info <- c(0, 0, 0, NA, NA, NA, NA, F) 
 info <- data.frame(AInfo, info) 
 colnames(info) <- c("option", "value")
 Trinity3 <- rbind(data.frame(option, value), info) 
@@ -397,7 +400,7 @@ colnames(AngelicBusterSkipATK) <- c(rownames(ATKFinal), "SkippedDelay")
 AngelicBusterSkipATK$Trinity2 <- c(T, rep(F, 11))
 AngelicBusterSkipATK$Trinity3 <- c(F, T, rep(F, 10))
 
-AngelicBusterSkipATK$SkippedDelay <- c(Delay(480, AngelicBusterSpec$ATKSpeed), Delay(450, AngelicBusterSpec$ATKSpeed), rep(F, 10))
+AngelicBusterSkipATK$SkippedDelay <- c(Delay(780, AngelicBusterSpec$ATKSpeed), Delay(0, AngelicBusterSpec$ATKSpeed), rep(F, 10))
 AngelicBusterSkipATK <- subset(AngelicBusterSkipATK, AngelicBusterSkipATK$SkippedDelay>0)
 ## Trinity Fusion : Other Logic(Set Time 240 when Making Dealcycle)
 
@@ -485,13 +488,13 @@ AngelicBusterCycle <- function(DealCycle, ATKFinal, BuffFinal, SummonedFinal, Sp
     if(DealCycle$MascotFamiliarDummy[nrow(DealCycle)-1] >= 0 & DealCycle$MascotFamiliarDummy[nrow(DealCycle)]==0 & DealCycle$MascotFamiliarStack[nrow(DealCycle)] < 8 & 
        DealCycle$MascotFamiliarBuff[nrow(DealCycle)] > 0 & DealCycle$Skills[nrow(DealCycle)]!="MascotFamiliarBuff") {
       DealCycle$MascotFamiliarStack[nrow(DealCycle)] <- min(8, DealCycle$MascotFamiliarStack[nrow(DealCycle)] + 1)
-      DealCycle$MascotFamiliarDummy[nrow(DealCycle)] <- ifelse(nrow(DealCycle)==2, 8000 + General$General$Serverlag * 1000, 
+      DealCycle$MascotFamiliarDummy[nrow(DealCycle)] <- ifelse(nrow(DealCycle)==2, 3000 + General$General$Serverlag * 1000, 
                                                                8000 + General$General$Serverlag * 1000 - (DealCycle$Time[nrow(DealCycle)] - DealCycle$Time[nrow(DealCycle)-1] - 
                                                                                                            DealCycle$MascotFamiliarDummy[nrow(DealCycle)-1]))
     } else if(DealCycle$Skills[nrow(DealCycle)]=="MascotFamiliarBuff") {
-      DealCycle$MascotFamiliarDummy[nrow(DealCycle)] <- 8000 + General$General$Serverlag * 1000
+      DealCycle$MascotFamiliarDummy[nrow(DealCycle)] <- 3000 + General$General$Serverlag * 1000
     } else if(DealCycle$MascotFamiliarStack[nrow(DealCycle)] == 8) {
-      DealCycle$MascotFamiliarDummy[nrow(DealCycle)] <- 8000 + General$General$Serverlag * 1000
+      DealCycle$MascotFamiliarDummy[nrow(DealCycle)] <- 3000 + General$General$Serverlag * 1000
     }
     return(DealCycle)
   }
