@@ -373,7 +373,7 @@ CrystalIgnitionPre <- rbind(data.frame(option, value), info)
 
 option <- factor(c("BDR", "FDR"), levels=ASkill)
 value <- c(20, floor(GetCoreLv(IlliumCore, "OverloadMana") / 10) + 8)
-info <- c(1156 + 47 * GetCoreLv(IlliumCore, "CrystalIgnition"), 5, 5340, 120, 180, T, F, F)
+info <- c(1156 + 47 * GetCoreLv(IlliumCore, "CrystalIgnition"), 5, 5340, 150, 180, T, F, F)
 info <- data.frame(AInfo, info)
 colnames(info) <- c("option", "value")
 CrystalIgnition <- rbind(data.frame(option, value), info)
@@ -1335,8 +1335,8 @@ IlliumDealCycle <- IlliumCycle2(PreDealCycle=IlliumDealCycle,
                                SkipStructure=IlliumSkipATK, 
                                Spec=IlliumSpec)
 IlliumDealCycle <- DealCycleFinal(IlliumDealCycle)
-IlliumDealCycle <- RepATKCycle(IlliumDealCycle, "CrystalIgnition", 62, 0, ATKFinal)
-IlliumDealCycle <- RepATKCycle(IlliumDealCycle, "ReactionSpectrum", 9, 0, ATKFinal)
+IlliumDealCycle <- RepATKCycle(IlliumDealCycle, "CrystalIgnition", 35, 0, ATKFinal)
+IlliumDealCycle <- RepATKCycle(IlliumDealCycle, "ReactionSpectrum", 5, 0, ATKFinal)
 IlliumDealCycle <- MCFCycle(IlliumDealCycle, c("Javelin", "EnhancedJavelin", "Orb", "CrystalIgnition", "Longinus"))
 IlliumDealCycle <- SoulofCrystalBuffLogic(IlliumDealCycle)
 IlliumDealCycle <- AddATKCycleIllium(IlliumDealCycle, c("Javelin", "EnhancedJavelin", "Orb", "CrystalIgnition", "Longinus"), 
