@@ -1,3 +1,6 @@
+library(parallel)
+options(scipen=999)
+
 ## Kinesis - Data
 ## Kinesis - Core
 KinesisCoreBase <- CoreBuilder(ActSkills=c("PsychicTornado", "UltimateMovingMatter", "UltimatePsychicBullet", "LawofGravity",
@@ -90,7 +93,7 @@ value <- c(50 + 2 * KinesisBase$PSkillLv, 20 + KinesisBase$PSkillLv, 20 + Kinesi
 ESPBattleOrder <- data.frame(option, value)
 
 option <- factor(c("FDR"), levels=PSkill)
-value <- c(40 + KinesisBase$PSkillLv)
+value <- c(15 + KinesisBase$PSkillLv)
 Gakseong <- data.frame(option, value) ## Gakseong CDMR -> Buff(Ultimate Skill Only)
 
 option <- factor(c("BuffDuration"), levels=PSkill)
@@ -154,14 +157,14 @@ colnames(info) <- c("option", "value")
 GakseongUltimate <- rbind(data.frame(option, value), info)
 
 option <- factor(c("FDR", "IGR"), levels=BSkill)
-value <- c(13, 16)
+value <- c(15, 15)
 info <- c(0, 1, 0, F, F, F, F)
 info <- data.frame(BInfo, info)
 colnames(info) <- c("option", "value")
 PsychicGroundDebuff <- rbind(data.frame(option, value), info)
 
 option <- factor(c("FDR"), levels=BSkill)
-value <- c(15)
+value <- c(40)
 info <- c(0, 1, 0, F, F, F, F)
 info <- data.frame(BInfo, info)
 colnames(info) <- c("option", "value")
@@ -302,16 +305,16 @@ info <- data.frame(AInfo,info)
 colnames(info) <- c("option", "value")
 PsychicSmashing <- rbind(data.frame(option, value), info)
 
-option <- factor(c("IGR", "FDR"), levels=ASkill)
-value <- c(ifelse(GetCoreLv(KinesisCore, "Telekinesis")>=40, 20, 0), 3 * GetCoreLv(KinesisCore, "Telekinesis"))
-info <- c(350, 0.7, 0, NA, 0, NA, NA, F)
+option <- factor(c("BDR", "IGR", "FDR"), levels=ASkill)
+value <- c(20, ifelse(GetCoreLv(KinesisCore, "Telekinesis")>=40, 20, 0), 3 * GetCoreLv(KinesisCore, "Telekinesis"))
+info <- c(350, 2, 0, NA, 0, NA, NA, F)
 info <- data.frame(AInfo,info)
 colnames(info) <- c("option", "value")
 Telekinesis <- rbind(data.frame(option, value), info)
 
 option <- factor(levels=ASkill)
 value <- c()
-info <- c(500 + 10 * KinesisSpec$SkillLv, 1, 360, NA, 30, T, T, F)
+info <- c(1000 + 10 * KinesisSpec$SkillLv, 4, 360, NA, 30, T, T, F)
 info <- data.frame(AInfo,info)
 colnames(info) <- c("option", "value")
 PsychicGround <- rbind(data.frame(option, value), info)
@@ -323,9 +326,10 @@ info <- data.frame(AInfo,info)
 colnames(info) <- c("option", "value")
 PsychicCharging <- rbind(data.frame(option, value), info)
 
+# removed
 option <- factor(c("IGR", "FDR"), levels=ASkill)
 value <- c(ifelse(GetCoreLv(KinesisCore, "PsychoBreak")>=40, 20, 0), 2 * GetCoreLv(KinesisCore, "PsychoBreak"))
-info <- c(1000 + 7 * KinesisSpec$SkillLv, 4, 840, NA, 30, T, T, F)
+info <- c(0, 0, 0, NA, 0, T, T, F)
 info <- data.frame(AInfo,info)
 colnames(info) <- c("option", "value")
 PsychoBreak <- rbind(data.frame(option, value), info)
@@ -575,7 +579,7 @@ KinesisCycle <- function(DealCycle, ATKFinal, BuffFinal, SummonedFinal, Spec,
     ## PP By Skill
     if(DealCycle$Skills[nrow(DealCycle)]=="PsychicSmashing") {
       DealCycle$PP[nrow(DealCycle)] <- min(40, DealCycle$PP[(nrow(DealCycle)-1)] + 2)
-    } else if(sum(DealCycle$Skills[nrow(DealCycle)]==c("PsychicGround", "PsychoBreak")) >= 1) {
+    } else if(sum(DealCycle$Skills[nrow(DealCycle)]==c("PsychicGround")) >= 1) {
       DealCycle$PP[nrow(DealCycle)] <- min(40, DealCycle$PP[(nrow(DealCycle)-1)] + 1)
     } else if(sum(DealCycle$Skills[nrow(DealCycle)]==c("EverPsychic")) >= 1) {
       DealCycle$PP[nrow(DealCycle)] <- ifelse(DealCycle$PsychicOver[nrow(DealCycle)] > 0, 39, 38)
