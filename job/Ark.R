@@ -1,3 +1,6 @@
+library(parallel)
+options(scipen=999)
+
 ## Ark - Data
 ## Ark - VMatrix
 ArkCoreBase <- CoreBuilder(ActSkills=c("InfinitySpell", "AbyssalRecall", "DeviousNightmare_Dream", "EndlesslyStarvingBeast",
@@ -57,7 +60,7 @@ value <- c(60)
 PhysicalTraining <- data.frame(option, value) 
 
 option <- factor(c("FDR", "CRR"), levels=PSkill)
-value <- c(10, 20)
+value <- c(5, 20)
 InitateFusion <- data.frame(option, value) 
 
 option <- factor(c("Mastery", "ATK", "CDMR"), levels=PSkill)
@@ -173,14 +176,14 @@ colnames(info) <- c("option", "value")
 GustBuff <- rbind(data.frame(option, value), info) 
 
 option <- factor(c("BDR","IGR"), levels=BSkill)
-value <- c(50 + ArkSpec$SkillLv + floor(ArkSpec$SkillLv/2), 20 + floor(ArkSpec$SkillLv/2))
+value <- c(50 + ArkBase$SkillLv + floor(ArkBase$SkillLv/2), 20 + floor(ArkBase$SkillLv/2))
 info <- c(60, NA, 0, T, NA, NA, T)
 info <- data.frame(BInfo, info)
 colnames(info) <- c("option", "value")
 AbyssBuff <- rbind(data.frame(option, value), info) 
 
 option <- factor(c("BDR","IGR"), levels=BSkill)
-value <- c(50 + ArkSpec$SkillLv + floor(ArkSpec$SkillLv/2), ifelse(ArkSpec$SkillLv >= 2, 26.582278, 25))
+value <- c(50 + ArkBase$SkillLv + floor(ArkBase$SkillLv/2), ifelse(ArkBase$SkillLv >= 2, 26.582278, 25))
 info <- c(60, 120, 0, T, NA, NA, T)
 info <- data.frame(BInfo, info)
 colnames(info) <- c("option", "value")
@@ -202,7 +205,7 @@ RaceofGod <- rbind(data.frame(option, value), info)
 
 option <- factor(levels=BSkill)
 value <- c()
-info <- c(40 + 2 * GetCoreLv(ArkCore, "InfinitySpell"), 240, 720, F, T, F, T)
+info <- c(40 + 2 * GetCoreLv(ArkCore, "InfinitySpell"), 120, 720, F, T, F, T)
 info <- data.frame(BInfo, info)
 colnames(info) <- c("option", "value")
 InfinitySpell <- rbind(data.frame(option, value), info) 
@@ -478,14 +481,14 @@ EndlessAgonyLast <- rbind(data.frame(option, value), info) ## StartATK 180ms
 
 option <- factor(levels=ASkill)
 value <- c() 
-info <- c(400 + 16 * GetCoreLv(ArkCore, "AbyssalRecall"), 6, 9960, 210, 200, T, F, F) 
+info <- c(210 + 9 * GetCoreLv(ArkCore, "AbyssalRecall"), 6, 9960, 210, 120, T, F, F) 
 info <- data.frame(AInfo, info) 
 colnames(info) <- c("option", "value")
 AbyssalRecall <- rbind(data.frame(option, value), info) 
 
 option <- factor(levels=ASkill)
 value <- c() 
-info <- c(1200 + 48 * GetCoreLv(ArkCore, "AbyssalRecall"), 72, 0, NA, NA, NA, NA, F) 
+info <- c(744 + 28 * GetCoreLv(ArkCore, "AbyssalRecall"), 72, 0, NA, NA, NA, NA, F) 
 info <- data.frame(AInfo, info) 
 colnames(info) <- c("option", "value")
 AbyssalRecallExplosion <- rbind(data.frame(option, value), info) 
