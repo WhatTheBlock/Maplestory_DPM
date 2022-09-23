@@ -128,7 +128,7 @@ VengefulHateStack <- rbind(data.frame(option, value), info)
 
 option <- factor(levels=BSkill)
 value <- c()
-info <- c(30, 0, 0, F, NA, NA, T)
+info <- c(18, 0, 0, F, NA, NA, T)
 info <- data.frame(BInfo, info)
 colnames(info) <- c("option", "value")
 AbyssalRecallBuff <- rbind(data.frame(option, value), info) 
@@ -205,7 +205,7 @@ RaceofGod <- rbind(data.frame(option, value), info)
 
 option <- factor(levels=BSkill)
 value <- c()
-info <- c(40 + 2 * GetCoreLv(ArkCore, "InfinitySpell"), 120, 720, F, T, F, T)
+info <- c(50, 120, 720, F, T, F, T)
 info <- data.frame(BInfo, info)
 colnames(info) <- c("option", "value")
 InfinitySpell <- rbind(data.frame(option, value), info) 
@@ -446,7 +446,7 @@ UnbridledChaos <- rbind(data.frame(option, value), info)
 
 option <- factor(c("IGR", "BDR", "FDR"), levels=ASkill)
 value <- c(IGRCalc(c(20, ifelse(GetCoreLv(ArkCore, "CreepingTerror_BlissfulRestraint_EndlessAgony")>=40, 20, 0))), 40, 2 * GetCoreLv(ArkCore, "CreepingTerror_BlissfulRestraint_EndlessAgony"))
-info <- c(600 + 10 * ArkSpec$SkillLv, 6, 900, NA, 180, T, F, F) 
+info <- c(600 + 10 * ArkSpec$SkillLv, 6, 900, NA, 120, T, F, F) 
 info <- data.frame(AInfo, info) 
 colnames(info) <- c("option", "value")
 BlissfulRestraint <- rbind(data.frame(option, value), info) 
@@ -481,14 +481,14 @@ EndlessAgonyLast <- rbind(data.frame(option, value), info) ## StartATK 180ms
 
 option <- factor(levels=ASkill)
 value <- c() 
-info <- c(210 + 9 * GetCoreLv(ArkCore, "AbyssalRecall"), 6, 9960, 210, 120, T, F, F) 
+info <- c(350 + 14 * GetCoreLv(ArkCore, "AbyssalRecall"), 6, 9960, 210, 120, T, F, F) 
 info <- data.frame(AInfo, info) 
 colnames(info) <- c("option", "value")
 AbyssalRecall <- rbind(data.frame(option, value), info) 
 
 option <- factor(levels=ASkill)
 value <- c() 
-info <- c(744 + 28 * GetCoreLv(ArkCore, "AbyssalRecall"), 72, 0, NA, NA, NA, NA, F) 
+info <- c(725 + 29 * GetCoreLv(ArkCore, "AbyssalRecall"), 72, 0, NA, NA, NA, NA, F) 
 info <- data.frame(AInfo, info) 
 colnames(info) <- c("option", "value")
 AbyssalRecallExplosion <- rbind(data.frame(option, value), info) 
@@ -622,7 +622,7 @@ ArkCycle <- function(DealCycle, ATKFinal, BuffFinal, SummonedFinal, Spec, SkipSt
   BuffSummonedPrior <- c("KnuckleBooster", "LuckyDice5", "ContactCaravan", "RaceofGod", "UsefulSharpEyes", "UsefulCombatOrders", "UsefulAdvancedBless", 
                          "ChargeSpellAmplification", "MagicCircuitFullDriveBuff", "OverDrive", "BlessofGrandis", "InfinitySpell", "SoulContractLink", "Restraint4")
   Times180 <- c(0, 0, 1/4, 0, 0, 0, 0, 
-                1.5, 3/4, 3, 3/4, 3/4, 1.5, 3/4)
+                3/2, 3/4, 3, 3/4, 3/2, 3/2, 3/4)
   if(nrow(BuffFinal[rownames(BuffFinal)=="UsefulAdvancedBless", ]) == 0) {
     Times180 <- Times180[BuffSummonedPrior!="UsefulAdvancedBless"]
     BuffSummonedPrior <- BuffSummonedPrior[BuffSummonedPrior!="UsefulAdvancedBless"]
@@ -900,7 +900,7 @@ ArkCycle <- function(DealCycle, ATKFinal, BuffFinal, SummonedFinal, Spec, SkipSt
         
         DealCycle <- DCATKSkip(DealCycle, "AbyssalRecall", ATKFinal, SkipStructure)
         DealCycle <- ArkGauge(DealCycle)
-        DealCycle$AbyssalRecallBuff[nrow(DealCycle)] <- 30000 + General$General$Serverlag * 1000
+        DealCycle$AbyssalRecallBuff[nrow(DealCycle)] <- 18000 + General$General$Serverlag * 1000
         SCRemain <- max(0, SCRemain - (DealCycle$Time[nrow(DealCycle)] - DealCycle$Time[nrow(DealCycle)-1]))
         GCRemain <- max(0, GCRemain - (DealCycle$Time[nrow(DealCycle)] - DealCycle$Time[nrow(DealCycle)-1]))
         ACRemain <- max(0, ACRemain - (DealCycle$Time[nrow(DealCycle)] - DealCycle$Time[nrow(DealCycle)-1]))
