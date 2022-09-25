@@ -1,3 +1,6 @@
+library(parallel)
+options(scipen=999)
+
 ## Bowmaster - Data
 ## Bowmaster - VMatrix
 BowmasterCoreBase <- CoreBuilder(ActSkills=c("ArrowRain", "AfterimageArrow", "QuiverFullBurst", "SilhouetteMirage", 
@@ -330,7 +333,7 @@ BowmasterATK <- Attack(list(HurricaneArrow=HurricaneArrow, FlashMirage=FlashMira
 ## Bowmaster - Summoned
 {option <- factor(c("BDR", "FDR", "IGR"), levels=SSkill)
 value <- c(30, 2 * GetCoreLv(BowmasterCore, "ArrowPlatter_FlashMirage"), ifelse(GetCoreLv(BowmasterCore, "ArrowPlatter_FlashMirage")>=40, 20, 0))
-info <- c(175, 1, 0, 210, 30, NA, T, NA, NA, F)
+info <- c(85 + 90, 1, 0, 180, 60, NA, T, NA, NA, F)
 info <- data.frame(SInfo, info)
 colnames(info) <- c("option", "value")
 ArrowPlatter <- rbind(data.frame(option, value), info) 
