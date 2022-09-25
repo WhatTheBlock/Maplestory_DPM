@@ -1,3 +1,6 @@
+library(parallel)
+options(scipen=999)
+
 ## Marksman - Data
 ## Marksman - VMatrix
 MarksmanCoreBase <- CoreBuilder(ActSkills=c("TrueSnipe", "SplitArrow", "ChargedArrow", "FullbustShot",
@@ -143,7 +146,7 @@ EpicAdventure <- rbind(data.frame(option, value), info)
 
 option <- factor(c("CRR", "CDMR", "IGR", "BDR"), levels=BSkill)
 value <- c(20, 10, 20, 20)
-info <- c(30, 90, 960, F, F, F, T)
+info <- c(20, 60, 960, F, F, F, T)
 info <- data.frame(BInfo, info)
 colnames(info) <- c("option", "value")
 Bullseye <- rbind(data.frame(option, value), info)
@@ -291,7 +294,7 @@ Snipe <- rbind(data.frame(option, value), info)
 option <- factor(c("IGR", "BDR", "CRR", "FDR"), levels=ASkill)
 value <- c(IGRCalc(c(25 + ceiling(MarksmanSpec$SkillLv/3)* 2, ifelse(GetCoreLv(MarksmanCore, "Snipe")>=40, 20, 0))), 
            30, 100, 2 * GetCoreLv(MarksmanCore, "Snipe"))
-info <- c(535 + MarksmanSpec$SkillLv * 7, 11, 840, NA, NA, NA, NA, F)
+info <- c(535 + MarksmanSpec$SkillLv * 7, 11, 780, NA, NA, NA, NA, F)
 info <- data.frame(AInfo, info)
 colnames(info) <- c("option", "value")
 EnhanceSnipe <- rbind(data.frame(option, value), info)
@@ -303,8 +306,8 @@ info <- data.frame(AInfo, info)
 colnames(info) <- c("option", "value")
 EnhanceSnipeAddATK <- rbind(data.frame(option, value), info)
 
-option <- factor(levels=ASkill)
-value <- c()
+option <- factor(c("IGR"), levels=ASkill)
+value <- c(25)
 info <- c(600 + 24 * GetCoreLv(MarksmanCore, "SplitArrow"), 6, 0, NA, NA, NA, NA, F)
 info <- data.frame(AInfo, info)
 colnames(info) <- c("option", "value")
@@ -333,14 +336,14 @@ ChargedArrowUncharged <- rbind(data.frame(option, value), info)
 
 option <- factor(c("IGR", "BDR", "CRR"), levels=ASkill)
 value <- c(100, 100, 100)
-info <- c(0, 0, 150, NA, 180, T, F, F)
+info <- c(0, 0, 120, NA, 60, T, F, F)
 info <- data.frame(AInfo, info)
 colnames(info) <- c("option", "value")
 TrueSnipeStart <- rbind(data.frame(option, value), info)
 
 option <- factor(c("IGR", "BDR", "CRR"), levels=ASkill)
 value <- c(100, 100, 100)
-info <- c(950 + 30 * GetCoreLv(MarksmanCore, "TrueSnipe"), 15, 900, NA, 180, T, F, F)
+info <- c(950 + 30 * GetCoreLv(MarksmanCore, "TrueSnipe"), 60, 900, NA, 60, T, F, F)
 info <- data.frame(AInfo, info)
 colnames(info) <- c("option", "value")
 TrueSnipe <- rbind(data.frame(option, value), info)
@@ -415,7 +418,7 @@ MarksmanCycle <- function(PreDealCycle, ATKFinal, BuffFinal, SummonedFinal, Spec
   BuffSummonedPrior <- c("SharpEyes", "MapleSoldier", "EpicAdventure", "UsefulCombatOrders", "UsefulAdvancedBless", 
                          "GuidedArrow", "Evolve", "FullbustShotBuff", "MapleWarriors2", "Bullseye", "SplitArrowBuff", "SoulContractLink", "CriticalReinforce", "Restraint4")
   Times120 <- c(0, 0, 1, 0, 0, 
-                0, 1, 1, 0.5, 1, 1, 1, 1, 0.5)
+                0, 1, 1, 0.5, 2, 1, 1, 1, 0.5)
   if(nrow(BuffFinal[rownames(BuffFinal)=="UsefulAdvancedBless", ]) == 0) {
     Times120 <- Times120[BuffSummonedPrior!="UsefulAdvancedBless"]
     BuffSummonedPrior <- BuffSummonedPrior[BuffSummonedPrior!="UsefulAdvancedBless"]
@@ -638,13 +641,6 @@ MarksmanCycle <- function(PreDealCycle, ATKFinal, BuffFinal, SummonedFinal, Spec
         DealCycle <- DCATK(DealCycle, "TrueSnipeStart", ATKFinal)
         DealCycle$EnhanceArrowStack[nrow(DealCycle)] <- DealCycle$EnhanceArrowStack[nrow(DealCycle)-1]
         CARemain <- max(0, CARemain - DealCycle$Time[1])
-        
-        for(i in 1:6) {
-          DealCycle <- DCATK(DealCycle, "TrueSnipe", ATKFinal)
-          DealCycle$EnhanceArrowStack[nrow(DealCycle)] <- DealCycle$EnhanceArrowStack[nrow(DealCycle)-1]
-          DealCycle$FocusOnBuff[nrow(DealCycle)] <- 15000
-          CARemain <- max(0, CARemain - DealCycle$Time[1])
-        }
         
         DealCycle <- DCATK(DealCycle, "TrueSnipe", ATKFinal)
         DealCycle$EnhanceArrowStack[nrow(DealCycle)] <- DealCycle$EnhanceArrowStack[nrow(DealCycle)-1]
