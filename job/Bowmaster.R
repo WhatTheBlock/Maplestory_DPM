@@ -119,7 +119,7 @@ SharpEyes <- rbind(data.frame(option, value), info)
 
 option <- factor(c("BDR", "ATK"), levels=BSkill)
 value <- c(20, 50)
-info <- c(30, 90, 540, F, F, F, T)
+info <- c(40, 120, 540, F, F, F, T)
 info <- data.frame(BInfo, info)
 colnames(info) <- c("option", "value")
 Preperation <- rbind(data.frame(option, value), info)
@@ -390,7 +390,7 @@ BowmasterCycle <- function(PreDealCycle, ATKFinal, BuffFinal, SummonedFinal, Spe
                           Period=c(120), CycleTime, SummonSkillPeriod) {
   BuffSummonedPrior <- c("SharpEyes", "MapleSoldier", "EpicAdventure", "UsefulCombatOrders", "UsefulAdvancedBless", "GuidedArrow", "Evolve", "ArrowPlatter", 
                          "MapleWarriors2", "Preperation", "ArrowRainBuff", "SoulContractLink", "QuiverFullBurst", "CriticalReinforce", "Restraint4", "AfterimageArrowBuff")
-  Times120 <- c(0, 0, 0, 0, 0, 0, 1, 4, 0.5, 1, 1, 1, 1, 1, 0.5, 1)
+  Times120 <- c(0, 0, 0, 0, 0, 0, 1, 2, 0.5, 1, 1, 1, 1, 1, 0.5, 1)
   if(nrow(BuffFinal[rownames(BuffFinal)=="UsefulAdvancedBless", ]) == 0) {
     Times120 <- Times120[BuffSummonedPrior!="UsefulAdvancedBless"]
     BuffSummonedPrior <- BuffSummonedPrior[BuffSummonedPrior!="UsefulAdvancedBless"]
