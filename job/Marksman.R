@@ -146,7 +146,7 @@ EpicAdventure <- rbind(data.frame(option, value), info)
 
 option <- factor(c("CRR", "CDMR", "IGR", "BDR"), levels=BSkill)
 value <- c(20, 10, 20, 20)
-info <- c(20, 60, 960, F, F, F, T)
+info <- c(40, 120, 960, F, F, F, T)
 info <- data.frame(BInfo, info)
 colnames(info) <- c("option", "value")
 Bullseye <- rbind(data.frame(option, value), info)
