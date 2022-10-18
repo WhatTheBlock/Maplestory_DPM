@@ -1,3 +1,6 @@
+library(parallel)
+options(scipen=999)
+
 ## Adele - Data
 ## Adele - VMatrix
 AdeleCoreBase <- CoreBuilder(ActSkills=c("Ruin", "Infinite", "Restore", "Storm", 
@@ -280,8 +283,8 @@ colnames(info) <- c("option", "value")
 Creation <- rbind(data.frame(option, value), info)
 
 option <- factor(c("IGR", "FDR"), levels=ASkill)
-value <- c(ifelse(GetCoreLv(AdeleCore, "Impale_Resonance_Marker")>=40, 20, 0), FDRCalc(c(2 * GetCoreLv(AdeleCore, "Impale_Resonance_Marker"), 75)))
-info <- c(510 + 3 * AdeleSpec$SkillLv, 6, 900, NA, NA, NA, NA, F)
+value <- c(ifelse(GetCoreLv(AdeleCore, "Impale_Resonance_Marker")>=40, 20, 0), 2 * GetCoreLv(AdeleCore, "Impale_Resonance_Marker"))
+info <- c(892 + 3 * AdeleSpec$SkillLv, 6, 900, NA, NA, NA, NA, F)
 info <- data.frame(AInfo, info)
 colnames(info) <- c("option", "value")
 Resonance <- rbind(data.frame(option, value), info)
@@ -323,7 +326,7 @@ Divide <- rbind(data.frame(option, value), info)
 
 option <- factor(c("IGR", "FDR"), levels=ASkill)
 value <- c(ifelse(GetCoreLv(AdeleCore, "Blossom")>=40, 20, 0), 2 * GetCoreLv(AdeleCore, "Blossom"))
-info <- c(650 + 6 * AdeleSpec$SkillLv, 8, 420, NA, NA, NA, NA, F)
+info <- c(650 + 6 * AdeleSpec$SkillLv, 8, 360, NA, NA, NA, NA, F)
 info <- data.frame(AInfo, info)
 colnames(info) <- c("option", "value")
 Blossom1st <- rbind(data.frame(option, value), info)
@@ -337,14 +340,14 @@ BlossomRemain <- rbind(data.frame(option, value), info)
 
 option <- factor(c("IGR", "FDR"), levels=ASkill)
 value <- c(ifelse(GetCoreLv(AdeleCore, "Order_Grave")>=40, 20, 0), 2 * GetCoreLv(AdeleCore, "Order_Grave"))
-info <- c(800 + 20 * AdeleSpec$SkillLv, 10, 840, NA, 90, T, T, F)
+info <- c(220 + 20 * AdeleSpec$SkillLv, 10, 840, NA, 10, T, T, F)
 info <- data.frame(AInfo, info)
 colnames(info) <- c("option", "value")
 Grave <- rbind(data.frame(option, value), info)
 
 option <- factor(c("IGR", "FDR"), levels=ASkill)
 value <- c(ifelse(GetCoreLv(AdeleCore, "Impale_Resonance_Marker")>=40, 20, 0), 2 * GetCoreLv(AdeleCore, "Impale_Resonance_Marker"))
-info <- c(2000, 6, 900, NA, 90, F, F, F)
+info <- c(2000, 6, 900, NA, 60, F, F, F)
 info <- data.frame(AInfo, info)
 colnames(info) <- c("option", "value")
 Marker <- rbind(data.frame(option, value), info)
